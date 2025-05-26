@@ -827,6 +827,11 @@
   }
 
   function copyAPAHTML() {
+  // Regenerate the APA preview just before copying
+  generateAPAPreview();
+
+  // Small delay to ensure preview is populated
+  setTimeout(() => {
     const content = document.getElementById('apaPreview').innerHTML.trim();
     if (!content) {
       alert('No references to copy. Please generate APA preview first.');
@@ -839,7 +844,9 @@
         console.error('Failed to copy:', err);
         alert('Failed to copy HTML to clipboard.');
       });
-  }
+  }, 100); // Delay allows the DOM to update
+}
+
 </script>
 </body>
 </html>
